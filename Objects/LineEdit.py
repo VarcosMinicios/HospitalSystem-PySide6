@@ -3,6 +3,7 @@ from PySide6.QtCore import QSize
 
 
 class LineEdit(QLineEdit):
+
     def __init__(self, parent, name, font):
         super().__init__(parent)
         self.setMaximumSize(QSize(16777215, 30))
@@ -31,6 +32,10 @@ class LineEdit(QLineEdit):
             background-color: rgb(144, 144, 144);
         }
         """)
+
+    def setMask(self):
+        
+        print(self.text())
 
     def updateStyleSheet(self):
 
@@ -61,7 +66,8 @@ class LineEdit(QLineEdit):
             """)
         
         else:
-                  self.setStyleSheet(
+
+            self.setStyleSheet(
             """
             QLineEdit {
                     border: 1px solid rgb(144, 144, 144);
@@ -84,4 +90,3 @@ class LineEdit(QLineEdit):
                 background-color: rgb(144, 144, 144);
             }
             """)
-        

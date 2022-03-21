@@ -2690,11 +2690,10 @@ class Ui_MainWindow(object):
         self.firstLinePatientName = LineEdit(self.frameTreatment, "firstLinePatientName", font2)
         sizePolicy1.setHeightForWidth(self.firstLinePatientName.sizePolicy().hasHeightForWidth())
         self.firstLinePatientName.setSizePolicy(sizePolicy1)
-
+        
         self.gridLayout_18.addWidget(self.firstLinePatientName, 0, 1, 1, 2)
 
         self.firstLineCpf = LineEdit(self.frameTreatment, "firstLineCpf", font2)
-
         sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
         sizePolicy5.setHorizontalStretch(120)
         sizePolicy5.setVerticalStretch(0)

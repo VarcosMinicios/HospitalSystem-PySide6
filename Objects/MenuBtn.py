@@ -11,7 +11,7 @@ class MenuBtn(QPushButton):
 
         self.focus = False
 
-        self.stacked = ''
+        self.stacked = 'self.ui.stackedWidget'
         self.target = target
 
         self.setObjectName(name)
@@ -65,9 +65,6 @@ class MenuBtn(QPushButton):
         """)
 
     def unselect(self):
-
-        print(self.objectName())
-        print("resetando")
 
         self.setStyleSheet("""
         QPushButton {
