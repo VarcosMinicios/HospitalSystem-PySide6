@@ -41,7 +41,6 @@ class MainWindow(QMainWindow):
         # Connect the style function to all LineEdits
         for lineEdit in self.ui.stackedWidget.findChildren(QLineEdit):
             lineEdit.textChanged.connect(lineEdit.updateStyleSheet)
-            lineEdit.textEdited.connect(lineEdit.setMask)
 
         # Connect the Menu Btns to respective functions
         for menuBtn in self.ui.frame.findChildren(QPushButton):
