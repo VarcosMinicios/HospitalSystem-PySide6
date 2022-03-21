@@ -11,6 +11,10 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFrame,
     QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
     QTableWidgetItem, QVBoxLayout, QWidget)
 
+
+from Objects.MenuBtn import MenuBtn
+from Objects.LineEdit import LineEdit
+
 import files
 
 
@@ -41,169 +45,38 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setSpacing(1)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(10, 10, 10, 10)
-        self.menuBtnMap = QPushButton(self.frame)
-        self.menuBtnMap.setObjectName(u"menuBtnMap")
-        self.menuBtnMap.setMinimumSize(QSize(100, 100))
-        self.menuBtnMap.setMaximumSize(QSize(100, 100))
         font = QFont()
         font.setPointSize(11)
-        self.menuBtnMap.setFont(font)
-        self.menuBtnMap.setCursor(QCursor(Qt.PointingHandCursor))
-        self.menuBtnMap.setStyleSheet(u"QPushButton {\n"
-"	padding-top: 10px;	\n"
-"	padding-bottom: 2px;\n"
-"	background-image: url(:/logo/images/fi-rr-map.svg);\n"
-"	background-repeat: no-repeat;\n"
-"	background-position: center top;\n"
-"	text-align: bottom;\n"
-"	color:#ffffff;\n"
-"	border: 2px solid #009800;\n"
-"}\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(68, 69, 71);\n"
-"}")
+
+        # Botões do Menu 
+        self.menuBtnMap = MenuBtn(self.frame, "menuBtnMap", "fi-rr-map.svg", font, "2px", 0)
+
+        self.menuBtnAtendimento = MenuBtn(self.frame, "menuBtnAtendimento", "fi-rr-file-add.svg", font, "10px", 1)
+
+        self.menuBtnHistoric = MenuBtn(self.frame, "menuBtnHistoric", "fi-rr-database.svg", font, "2px", 2)
+
+        self.menuBtnPatient = MenuBtn(self.frame, "menuBtnPatient", "fi-rr-user.svg", font, "2px", 6)
+
+        self.menuBtnExport = MenuBtn(self.frame, "menuBtnExport", "fi-rr-data-transfer.svg", font, "10px", 3)
+       
+        self.menuBtnRegister = MenuBtn(self.frame, "menuBtnRegister", "fi-rr-user-add.svg", font, "2px", 4)
+
+        self.menuBtnRecibo = MenuBtn(self.frame, "menuBtnRecibo", "fi-rr-document.svg", font, "10px", 5)
 
         self.horizontalLayout.addWidget(self.menuBtnMap)
-
-        self.menuBtnAtendimento = QPushButton(self.frame)
-        self.menuBtnAtendimento.setObjectName(u"menuBtnAtendimento")
-        self.menuBtnAtendimento.setMinimumSize(QSize(100, 100))
-        self.menuBtnAtendimento.setMaximumSize(QSize(100, 100))
-        self.menuBtnAtendimento.setFont(font)
-        self.menuBtnAtendimento.setCursor(QCursor(Qt.PointingHandCursor))
-        self.menuBtnAtendimento.setStyleSheet(u"QPushButton {\n"
-"	padding-top: 10px;	\n"
-"	padding-bottom: 10px;\n"
-"	background-image: url(:/logo/images/fi-rr-file-add.svg);\n"
-"	background-repeat: no-repeat;\n"
-"	background-position: center top;\n"
-"	text-align: bottom;\n"
-"	color:#ffffff;\n"
-"	border: 2px solid #009800;\n"
-"}\n"
-"\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(68, 69, 71);\n"
-"}")
-
+        
         self.horizontalLayout.addWidget(self.menuBtnAtendimento)
-
-        self.menuBtnHistoric = QPushButton(self.frame)
-        self.menuBtnHistoric.setObjectName(u"menuBtnHistoric")
-        self.menuBtnHistoric.setMinimumSize(QSize(100, 100))
-        self.menuBtnHistoric.setMaximumSize(QSize(100, 100))
-        self.menuBtnHistoric.setFont(font)
-        self.menuBtnHistoric.setCursor(QCursor(Qt.PointingHandCursor))
-        self.menuBtnHistoric.setStyleSheet(u"QPushButton {\n"
-"	padding-top: 10px;	\n"
-"	padding-bottom: 2px;\n"
-"	background-image: url(:/logo/images/fi-rr-database.svg);\n"
-"	background-repeat: no-repeat;\n"
-"	background-position: center top;\n"
-"	text-align: bottom;\n"
-"	color:#ffffff;\n"
-"	border: 2px solid #009800;\n"
-"}\n"
-"\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(68, 69, 71);\n"
-"}")
-
+        
         self.horizontalLayout.addWidget(self.menuBtnHistoric)
-
-        self.menuBtnPatient = QPushButton(self.frame)
-        self.menuBtnPatient.setObjectName(u"menuBtnPatient")
-        self.menuBtnPatient.setMinimumSize(QSize(100, 100))
-        self.menuBtnPatient.setMaximumSize(QSize(100, 100))
-        self.menuBtnPatient.setFont(font)
-        self.menuBtnPatient.setCursor(QCursor(Qt.PointingHandCursor))
-        self.menuBtnPatient.setStyleSheet(u"QPushButton {\n"
-"	padding-top: 10px;	\n"
-"	padding-bottom: 2px;\n"
-"	background-image: url(:/logo/images/fi-rr-user.svg);\n"
-"	background-repeat: no-repeat;\n"
-"	background-position: center top;\n"
-"	text-align: bottom;\n"
-"	color:#ffffff;\n"
-"	border: 2px solid #009800;\n"
-"}\n"
-"\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(68, 69, 71);\n"
-"}")
-
+        
         self.horizontalLayout.addWidget(self.menuBtnPatient)
 
-        self.menuBtnExport = QPushButton(self.frame)
-        self.menuBtnExport.setObjectName(u"menuBtnExport")
-        self.menuBtnExport.setMinimumSize(QSize(100, 100))
-        self.menuBtnExport.setMaximumSize(QSize(100, 100))
-        self.menuBtnExport.setFont(font)
-        self.menuBtnExport.setCursor(QCursor(Qt.PointingHandCursor))
-        self.menuBtnExport.setStyleSheet(u"QPushButton {\n"
-"	padding-top: 10px;	\n"
-"	padding-bottom: 10px;\n"
-"	background-image: url(:/logo/images/fi-rr-data-transfer.svg);\n"
-"	background-repeat: no-repeat;\n"
-"	background-position: center top;\n"
-"	text-align: bottom;\n"
-"	color:#ffffff;\n"
-"	border: 2px solid #009800;\n"
-"}\n"
-"\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(68, 69, 71);\n"
-"}")
-
         self.horizontalLayout.addWidget(self.menuBtnExport)
-
-        self.menuBtnRegister = QPushButton(self.frame)
-        self.menuBtnRegister.setObjectName(u"menuBtnRegister")
-        self.menuBtnRegister.setMinimumSize(QSize(100, 100))
-        self.menuBtnRegister.setMaximumSize(QSize(100, 100))
-        self.menuBtnRegister.setFont(font)
-        self.menuBtnRegister.setCursor(QCursor(Qt.PointingHandCursor))
-        self.menuBtnRegister.setStyleSheet(u"QPushButton {\n"
-"	padding-top: 10px;	\n"
-"	padding-bottom: 2px;\n"
-"	background-image: url(:/logo/images/fi-rr-user-add.svg);\n"
-"	background-repeat: no-repeat;\n"
-"	background-position: center top;\n"
-"	text-align: bottom;\n"
-"	color:#ffffff;\n"
-"	border: 2px solid #009800;\n"
-"}\n"
-"\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(68, 69, 71);\n"
-"}")
-
+        
         self.horizontalLayout.addWidget(self.menuBtnRegister)
-
-        self.menuBtnRecibo = QPushButton(self.frame)
-        self.menuBtnRecibo.setObjectName(u"menuBtnRecibo")
-        self.menuBtnRecibo.setMinimumSize(QSize(100, 100))
-        self.menuBtnRecibo.setMaximumSize(QSize(100, 100))
-        self.menuBtnRecibo.setFont(font)
-        self.menuBtnRecibo.setCursor(QCursor(Qt.PointingHandCursor))
-        self.menuBtnRecibo.setStyleSheet(u"QPushButton {\n"
-"	padding-top: 10px;	\n"
-"	padding-bottom: 10px;\n"
-"	background-image: url(:/logo/images/fi-rr-document.svg);\n"
-"	background-repeat: no-repeat;\n"
-"	background-position: center top;\n"
-"	text-align: bottom;\n"
-"	color:#ffffff;\n"
-"	border: 2px solid #009800;\n"
-"}\n"
-"\n"
-"QPushButton::hover {\n"
-"	background-color: rgb(68, 69, 71);\n"
-"}")
-
+        
         self.horizontalLayout.addWidget(self.menuBtnRecibo)
-
-
+        
         self.verticalLayout.addWidget(self.frame)
 
         self.stackedWidget = QStackedWidget(self.centralwidget)
@@ -2746,42 +2619,21 @@ class Ui_MainWindow(object):
         self.gridLayout_18.setSpacing(5)
         self.gridLayout_18.setObjectName(u"gridLayout_18")
         self.gridLayout_18.setContentsMargins(10, 10, 10, 10)
-        self.firstLineProfession = QLineEdit(self.frameTreatment)
-        self.firstLineProfession.setObjectName(u"firstLineProfession")
+
+        self.firstLineProfession = LineEdit(self.frameTreatment, "firstLineProfession", font2)
+
         sizePolicy1.setHeightForWidth(self.firstLineProfession.sizePolicy().hasHeightForWidth())
         self.firstLineProfession.setSizePolicy(sizePolicy1)
-        self.firstLineProfession.setMaximumSize(QSize(16777215, 30))
-        self.firstLineProfession.setFont(font2)
-        self.firstLineProfession.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineProfession, 0, 8, 1, 1)
 
-        self.firstLineAge = QLineEdit(self.frameTreatment)
-        self.firstLineAge.setObjectName(u"firstLineAge")
+        self.firstLineAge = LineEdit(self.frameTreatment, "firstLineAge", font2)
         sizePolicy1.setHeightForWidth(self.firstLineAge.sizePolicy().hasHeightForWidth())
         self.firstLineAge.setSizePolicy(sizePolicy1)
-        self.firstLineAge.setMaximumSize(QSize(16777215, 30))
-        self.firstLineAge.setFont(font2)
-        self.firstLineAge.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineAge, 0, 4, 1, 1)
 
+        ##################################################
         self.firstBoxDoctor = QComboBox(self.frameTreatment)
         self.firstBoxDoctor.setObjectName(u"firstBoxDoctor")
         sizePolicy1.setHeightForWidth(self.firstBoxDoctor.sizePolicy().hasHeightForWidth())
@@ -2822,82 +2674,36 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxDoctor, 4, 7, 1, 2)
 
-        self.firstLineUf = QLineEdit(self.frameTreatment)
-        self.firstLineUf.setObjectName(u"firstLineUf")
+        self.firstLineUf = LineEdit(self.frameTreatment, "firstLineUf", font2)
         sizePolicy1.setHeightForWidth(self.firstLineUf.sizePolicy().hasHeightForWidth())
         self.firstLineUf.setSizePolicy(sizePolicy1)
-        self.firstLineUf.setMaximumSize(QSize(50, 30))
-        self.firstLineUf.setFont(font2)
-        self.firstLineUf.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
         self.firstLineUf.setMaxLength(2)
 
         self.gridLayout_18.addWidget(self.firstLineUf, 2, 5, 1, 1)
 
-        self.firstLineTreatDate = QLineEdit(self.frameTreatment)
-        self.firstLineTreatDate.setObjectName(u"firstLineTreatDate")
+        self.firstLineTreatDate = LineEdit(self.frameTreatment, "firstLineTreatDate", font2)
         sizePolicy1.setHeightForWidth(self.firstLineTreatDate.sizePolicy().hasHeightForWidth())
         self.firstLineTreatDate.setSizePolicy(sizePolicy1)
-        self.firstLineTreatDate.setMaximumSize(QSize(16777215, 30))
-        self.firstLineTreatDate.setFont(font2)
-        self.firstLineTreatDate.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineTreatDate, 4, 0, 1, 1)
 
-        self.firstLinePatientName = QLineEdit(self.frameTreatment)
-        self.firstLinePatientName.setObjectName(u"firstLinePatientName")
+        self.firstLinePatientName = LineEdit(self.frameTreatment, "firstLinePatientName", font2)
         sizePolicy1.setHeightForWidth(self.firstLinePatientName.sizePolicy().hasHeightForWidth())
         self.firstLinePatientName.setSizePolicy(sizePolicy1)
-        self.firstLinePatientName.setMaximumSize(QSize(16777215, 30))
-        self.firstLinePatientName.setFont(font2)
-        self.firstLinePatientName.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLinePatientName, 0, 1, 1, 2)
 
-        self.firstLineCpf = QLineEdit(self.frameTreatment)
-        self.firstLineCpf.setObjectName(u"firstLineCpf")
+        self.firstLineCpf = LineEdit(self.frameTreatment, "firstLineCpf", font2)
+
         sizePolicy5 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
         sizePolicy5.setHorizontalStretch(120)
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.firstLineCpf.sizePolicy().hasHeightForWidth())
         self.firstLineCpf.setSizePolicy(sizePolicy5)
-        self.firstLineCpf.setMaximumSize(QSize(16777215, 30))
-        self.firstLineCpf.setFont(font2)
-        self.firstLineCpf.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineCpf, 0, 0, 1, 1)
 
+        ########################################################
         self.firstBoxClinic = QComboBox(self.frameTreatment)
         self.firstBoxClinic.addItem("")
         self.firstBoxClinic.addItem("")
@@ -2947,42 +2753,18 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxClinic, 4, 2, 1, 1)
 
-        self.firstLineCity = QLineEdit(self.frameTreatment)
-        self.firstLineCity.setObjectName(u"firstLineCity")
+        self.firstLineCity = LineEdit(self.frameTreatment, "firstLineCity", font2)
         sizePolicy1.setHeightForWidth(self.firstLineCity.sizePolicy().hasHeightForWidth())
         self.firstLineCity.setSizePolicy(sizePolicy1)
-        self.firstLineCity.setMaximumSize(QSize(16777215, 30))
-        self.firstLineCity.setFont(font2)
-        self.firstLineCity.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineCity, 2, 3, 1, 1)
 
-        self.firstLineSusCard = QLineEdit(self.frameTreatment)
-        self.firstLineSusCard.setObjectName(u"firstLineSusCard")
+        self.firstLineSusCard = LineEdit(self.frameTreatment, "firstLineSusCard", font2)
         sizePolicy6 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy6.setHorizontalStretch(120)
         sizePolicy6.setVerticalStretch(0)
         sizePolicy6.setHeightForWidth(self.firstLineSusCard.sizePolicy().hasHeightForWidth())
         self.firstLineSusCard.setSizePolicy(sizePolicy6)
-        self.firstLineSusCard.setMaximumSize(QSize(16777215, 30))
-        self.firstLineSusCard.setFont(font2)
-        self.firstLineSusCard.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineSusCard, 1, 0, 1, 1)
 
@@ -2996,42 +2778,19 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.frame_3, 3, 0, 1, 1)
 
-        self.firstLineCep = QLineEdit(self.frameTreatment)
-        self.firstLineCep.setObjectName(u"firstLineCep")
+        self.firstLineCep = LineEdit(self.frameTreatment, "firstLineCep", font2)
         sizePolicy1.setHeightForWidth(self.firstLineCep.sizePolicy().hasHeightForWidth())
         self.firstLineCep.setSizePolicy(sizePolicy1)
-        self.firstLineCep.setMaximumSize(QSize(16777215, 30))
-        self.firstLineCep.setFont(font2)
-        self.firstLineCep.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineCep, 2, 4, 1, 1)
 
-        self.firstLineBornDay = QLineEdit(self.frameTreatment)
-        self.firstLineBornDay.setObjectName(u"firstLineBornDay")
+        self.firstLineBornDay = LineEdit(self.frameTreatment, "firstLineBornDay", font2)
         sizePolicy1.setHeightForWidth(self.firstLineBornDay.sizePolicy().hasHeightForWidth())
         self.firstLineBornDay.setSizePolicy(sizePolicy1)
-        self.firstLineBornDay.setMaximumSize(QSize(16777215, 30))
-        self.firstLineBornDay.setFont(font2)
-        self.firstLineBornDay.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineBornDay, 0, 3, 1, 1)
 
+        ######################################################
         self.firstBoxAdmission = QComboBox(self.frameTreatment)
         self.firstBoxAdmission.setObjectName(u"firstBoxAdmission")
         sizePolicy1.setHeightForWidth(self.firstBoxAdmission.sizePolicy().hasHeightForWidth())
@@ -3072,21 +2831,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxAdmission, 4, 6, 1, 1)
 
-        self.firstLineAdress = QLineEdit(self.frameTreatment)
-        self.firstLineAdress.setObjectName(u"firstLineAdress")
+        self.firstLineAdress = LineEdit(self.frameTreatment, "firstLineAdress", font2)
         sizePolicy1.setHeightForWidth(self.firstLineAdress.sizePolicy().hasHeightForWidth())
         self.firstLineAdress.setSizePolicy(sizePolicy1)
-        self.firstLineAdress.setMaximumSize(QSize(16777215, 30))
-        self.firstLineAdress.setFont(font2)
-        self.firstLineAdress.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineAdress, 2, 0, 1, 2)
 
@@ -3124,24 +2871,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBtnClean, 5, 7, 1, 1, Qt.AlignHCenter|Qt.AlignTop)
 
-        self.firstLinePhoneTwo = QLineEdit(self.frameTreatment)
-        self.firstLinePhoneTwo.setObjectName(u"firstLinePhoneTwo")
+        self.firstLinePhoneTwo = LineEdit(self.frameTreatment, "firstLinePhoneTwo", font2)
         sizePolicy1.setHeightForWidth(self.firstLinePhoneTwo.sizePolicy().hasHeightForWidth())
         self.firstLinePhoneTwo.setSizePolicy(sizePolicy1)
-        self.firstLinePhoneTwo.setMaximumSize(QSize(16777215, 30))
-        self.firstLinePhoneTwo.setFont(font2)
-        self.firstLinePhoneTwo.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLinePhoneTwo, 1, 8, 1, 1)
 
+        ###################################################
         self.firstBoxBed = QComboBox(self.frameTreatment)
         self.firstBoxBed.addItem("")
         self.firstBoxBed.addItem("")
@@ -3223,6 +2959,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxBed, 4, 3, 1, 2)
 
+        ##################################################
         self.firstBoxDependency = QComboBox(self.frameTreatment)
         self.firstBoxDependency.addItem("")
         self.firstBoxDependency.addItem("")
@@ -3271,57 +3008,21 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxDependency, 4, 5, 1, 1)
 
-        self.firstLinePhoneOne = QLineEdit(self.frameTreatment)
-        self.firstLinePhoneOne.setObjectName(u"firstLinePhoneOne")
+        self.firstLinePhoneOne = LineEdit(self.frameTreatment, "firstLinePhoneOne", font2)
         sizePolicy1.setHeightForWidth(self.firstLinePhoneOne.sizePolicy().hasHeightForWidth())
         self.firstLinePhoneOne.setSizePolicy(sizePolicy1)
-        self.firstLinePhoneOne.setMaximumSize(QSize(16777215, 30))
-        self.firstLinePhoneOne.setFont(font2)
-        self.firstLinePhoneOne.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLinePhoneOne, 1, 7, 1, 1)
 
-        self.firstLineFatherName = QLineEdit(self.frameTreatment)
-        self.firstLineFatherName.setObjectName(u"firstLineFatherName")
+        self.firstLineFatherName = LineEdit(self.frameTreatment, "firstLineFatherName", font2)
         sizePolicy1.setHeightForWidth(self.firstLineFatherName.sizePolicy().hasHeightForWidth())
         self.firstLineFatherName.setSizePolicy(sizePolicy1)
-        self.firstLineFatherName.setMaximumSize(QSize(16777215, 30))
-        self.firstLineFatherName.setFont(font2)
-        self.firstLineFatherName.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineFatherName, 1, 2, 1, 3)
 
-        self.firstLineRG = QLineEdit(self.frameTreatment)
-        self.firstLineRG.setObjectName(u"firstLineRG")
+        self.firstLineRG = LineEdit(self.frameTreatment, "firstLineRG", font2)
         sizePolicy1.setHeightForWidth(self.firstLineRG.sizePolicy().hasHeightForWidth())
         self.firstLineRG.setSizePolicy(sizePolicy1)
-        self.firstLineRG.setMaximumSize(QSize(16777215, 30))
-        self.firstLineRG.setFont(font2)
-        self.firstLineRG.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineRG, 1, 1, 1, 1)
 
@@ -3356,39 +3057,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBtnConfirm, 5, 8, 1, 1, Qt.AlignHCenter|Qt.AlignTop)
 
-        self.firstLineDistrict = QLineEdit(self.frameTreatment)
-        self.firstLineDistrict.setObjectName(u"firstLineDistrict")
+        self.firstLineDistrict = LineEdit(self.frameTreatment, "firstLineDistrict", font2)
         sizePolicy1.setHeightForWidth(self.firstLineDistrict.sizePolicy().hasHeightForWidth())
         self.firstLineDistrict.setSizePolicy(sizePolicy1)
-        self.firstLineDistrict.setMaximumSize(QSize(16777215, 30))
-        self.firstLineDistrict.setFont(font2)
-        self.firstLineDistrict.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineDistrict, 2, 2, 1, 1)
 
-        self.firstLineTreatHour = QLineEdit(self.frameTreatment)
-        self.firstLineTreatHour.setObjectName(u"firstLineTreatHour")
+        self.firstLineTreatHour = LineEdit(self.frameTreatment, "firstLineTreatHour", font2)
         sizePolicy1.setHeightForWidth(self.firstLineTreatHour.sizePolicy().hasHeightForWidth())
         self.firstLineTreatHour.setSizePolicy(sizePolicy1)
-        self.firstLineTreatHour.setMaximumSize(QSize(16777215, 30))
-        self.firstLineTreatHour.setFont(font2)
-        self.firstLineTreatHour.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineTreatHour, 4, 1, 1, 1)
 
@@ -3421,6 +3098,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBtnRegister, 2, 8, 1, 1, Qt.AlignHCenter)
 
+        ####################################################
         self.firstBoxSkinColor = QComboBox(self.frameTreatment)
         self.firstBoxSkinColor.addItem("")
         self.firstBoxSkinColor.addItem("")
@@ -3466,24 +3144,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxSkinColor, 0, 6, 1, 1)
 
-        self.firstLineMotherName = QLineEdit(self.frameTreatment)
-        self.firstLineMotherName.setObjectName(u"firstLineMotherName")
+        self.firstLineMotherName = LineEdit(self.frameTreatment, "firstLineMotherName", font2)
         sizePolicy1.setHeightForWidth(self.firstLineMotherName.sizePolicy().hasHeightForWidth())
         self.firstLineMotherName.setSizePolicy(sizePolicy1)
-        self.firstLineMotherName.setMaximumSize(QSize(16777215, 30))
-        self.firstLineMotherName.setFont(font2)
-        self.firstLineMotherName.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_18.addWidget(self.firstLineMotherName, 1, 5, 1, 2)
 
+        ###################################################
         self.firstBoxUrbanZone = QComboBox(self.frameTreatment)
         self.firstBoxUrbanZone.addItem("")
         self.firstBoxUrbanZone.addItem("")
@@ -3526,6 +3193,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxUrbanZone, 2, 6, 1, 1)
 
+        ##################################################
         self.firstBoxSex = QComboBox(self.frameTreatment)
         self.firstBoxSex.addItem("")
         self.firstBoxSex.addItem("")
@@ -3568,6 +3236,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxSex, 0, 5, 1, 1)
 
+        ###################################################
         self.firstBoxCivilStats = QComboBox(self.frameTreatment)
         self.firstBoxCivilStats.addItem("")
         self.firstBoxCivilStats.addItem("")
@@ -3612,19 +3281,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_18.addWidget(self.firstBoxCivilStats, 0, 7, 1, 1)
 
-        self.firstLineResponsible = QLineEdit(self.frameTreatment)
-        self.firstLineResponsible.setObjectName(u"firstLineResponsible")
-        self.firstLineResponsible.setMaximumSize(QSize(16777215, 30))
-        self.firstLineResponsible.setFont(font2)
-        self.firstLineResponsible.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.firstLineResponsible = LineEdit(self.frameTreatment, "firstLineResponsible", font2)
 
         self.gridLayout_18.addWidget(self.firstLineResponsible, 5, 0, 1, 3)
 
@@ -3680,40 +3337,16 @@ class Ui_MainWindow(object):
 
         self.gridLayout_19.addWidget(self.secondBtnClean, 1, 1, 1, 1, Qt.AlignRight)
 
-        self.secondLineCpf = QLineEdit(self.frameHistoric)
-        self.secondLineCpf.setObjectName(u"secondLineCpf")
+        self.secondLineCpf = LineEdit(self.frameHistoric, "secondLineCpf", font2)
         sizePolicy8 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy8.setHorizontalStretch(0)
         sizePolicy8.setVerticalStretch(0)
         sizePolicy8.setHeightForWidth(self.secondLineCpf.sizePolicy().hasHeightForWidth())
         self.secondLineCpf.setSizePolicy(sizePolicy8)
-        self.secondLineCpf.setMaximumSize(QSize(16777215, 30))
-        self.secondLineCpf.setFont(font2)
-        self.secondLineCpf.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_19.addWidget(self.secondLineCpf, 0, 0, 1, 1)
 
-        self.secondLinePatientName = QLineEdit(self.frameHistoric)
-        self.secondLinePatientName.setObjectName(u"secondLinePatientName")
-        self.secondLinePatientName.setMaximumSize(QSize(16777215, 30))
-        self.secondLinePatientName.setFont(font2)
-        self.secondLinePatientName.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.secondLinePatientName = LineEdit(self.frameHistoric, "secondLinePatientName", font2)
 
         self.gridLayout_19.addWidget(self.secondLinePatientName, 0, 1, 1, 1)
 
@@ -3746,19 +3379,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_19.addWidget(self.secondBtnConfirm, 1, 2, 1, 1)
 
-        self.secondLineMotherName = QLineEdit(self.frameHistoric)
-        self.secondLineMotherName.setObjectName(u"secondLineMotherName")
-        self.secondLineMotherName.setMaximumSize(QSize(16777215, 30))
-        self.secondLineMotherName.setFont(font2)
-        self.secondLineMotherName.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.secondLineMotherName = LineEdit(self.frameHistoric, "secondLineMotherName", font2)
 
         self.gridLayout_19.addWidget(self.secondLineMotherName, 0, 2, 1, 1)
 
@@ -3835,6 +3456,7 @@ class Ui_MainWindow(object):
         self.gridLayout.setSpacing(5)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(10, 10, 10, 10)
+
         self.thirdBoxDependency = QComboBox(self.pageExport)
         self.thirdBoxDependency.addItem("")
         self.thirdBoxDependency.addItem("")
@@ -3881,51 +3503,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.thirdBoxDependency, 2, 1, 1, 1)
 
-        self.thirdLineMotherName = QLineEdit(self.pageExport)
-        self.thirdLineMotherName.setObjectName(u"thirdLineMotherName")
-        self.thirdLineMotherName.setMaximumSize(QSize(16777215, 30))
-        self.thirdLineMotherName.setFont(font2)
-        self.thirdLineMotherName.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.thirdLineMotherName = LineEdit(self.pageExport, "thirdLineMotherName", font2)
 
         self.gridLayout.addWidget(self.thirdLineMotherName, 1, 3, 1, 3)
 
-        self.thirdLineFinalDate = QLineEdit(self.pageExport)
-        self.thirdLineFinalDate.setObjectName(u"thirdLineFinalDate")
-        self.thirdLineFinalDate.setMaximumSize(QSize(130, 30))
-        self.thirdLineFinalDate.setFont(font2)
-        self.thirdLineFinalDate.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.thirdLineFinalDate = LineEdit(self.pageExport, "thirdLineFinalDate", font2)
 
         self.gridLayout.addWidget(self.thirdLineFinalDate, 0, 1, 1, 1)
 
-        self.thirdLineInitDate = QLineEdit(self.pageExport)
-        self.thirdLineInitDate.setObjectName(u"thirdLineInitDate")
-        self.thirdLineInitDate.setMaximumSize(QSize(130, 30))
-        self.thirdLineInitDate.setFont(font2)
-        self.thirdLineInitDate.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.thirdLineInitDate = LineEdit(self.pageExport, "thirdLineInitDate", font2)
 
         self.gridLayout.addWidget(self.thirdLineInitDate, 0, 0, 1, 1)
 
@@ -3958,6 +3544,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.thirdBtnExport, 2, 4, 1, 1)
 
+        ###################################################
         self.thirdBoxClinic = QComboBox(self.pageExport)
         self.thirdBoxClinic.addItem("")
         self.thirdBoxClinic.addItem("")
@@ -4005,22 +3592,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.thirdBoxClinic, 2, 0, 1, 1)
 
-        self.thirdLineCpf = QLineEdit(self.pageExport)
-        self.thirdLineCpf.setObjectName(u"thirdLineCpf")
-        self.thirdLineCpf.setMaximumSize(QSize(150, 30))
-        self.thirdLineCpf.setFont(font2)
-        self.thirdLineCpf.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.thirdLineCpf = LineEdit(self.pageExport, "thirdLineCpf", font2)
 
         self.gridLayout.addWidget(self.thirdLineCpf, 1, 0, 1, 1)
 
+        #################################
         self.thirdBoxBed = QComboBox(self.pageExport)
         self.thirdBoxBed.addItem("")
         self.thirdBoxBed.addItem("")
@@ -4097,19 +3673,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.thirdBoxBed, 2, 2, 1, 1)
 
-        self.thirdLinePatient = QLineEdit(self.pageExport)
-        self.thirdLinePatient.setObjectName(u"thirdLinePatient")
-        self.thirdLinePatient.setMaximumSize(QSize(16777215, 30))
-        self.thirdLinePatient.setFont(font2)
-        self.thirdLinePatient.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.thirdLinePatient = LineEdit(self.pageExport, "thirdLinePatient", font2)
 
         self.gridLayout.addWidget(self.thirdLinePatient, 1, 1, 1, 2)
 
@@ -4202,19 +3766,8 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setSpacing(5)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(10, 10, 10, 10)
-        self.fourthLineName = QLineEdit(self.frameRegister)
-        self.fourthLineName.setObjectName(u"fourthLineName")
-        self.fourthLineName.setMaximumSize(QSize(16777215, 30))
-        self.fourthLineName.setFont(font2)
-        self.fourthLineName.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+
+        self.fourthLineName = LineEdit(self.frameRegister, "fourthLineName", font2)
 
         self.gridLayout_2.addWidget(self.fourthLineName, 0, 0, 1, 2)
 
@@ -4314,39 +3867,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.fourthLineClean, 2, 1, 1, 1)
 
-        self.fourthLineCrm = QLineEdit(self.frameRegister)
-        self.fourthLineCrm.setObjectName(u"fourthLineCrm")
-        self.fourthLineCrm.setMaximumSize(QSize(16777215, 30))
-        self.fourthLineCrm.setFont(font2)
-        self.fourthLineCrm.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"\n"
-"QLineEdit::disabled {\n"
-"	background-color: rgb(114, 114, 114);\n"
-"}\n"
-"")
+        self.fourthLineCrm = LineEdit(self.frameRegister, "fourthLineCrm", font2)
 
         self.gridLayout_2.addWidget(self.fourthLineCrm, 1, 2, 1, 1)
 
-        self.fourthLineAdress = QLineEdit(self.frameRegister)
-        self.fourthLineAdress.setObjectName(u"fourthLineAdress")
-        self.fourthLineAdress.setMaximumSize(QSize(16777215, 30))
-        self.fourthLineAdress.setFont(font2)
-        self.fourthLineAdress.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.fourthLineAdress = LineEdit(self.frameRegister, "fourthLineAdress", font2)
 
         self.gridLayout_2.addWidget(self.fourthLineAdress, 0, 2, 1, 1)
 
@@ -4393,45 +3918,22 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.fifthBtnSearch, 4, 3, 1, 1)
 
-        self.fifthLineCpf = QLineEdit(self.pageRecibo)
-        self.fifthLineCpf.setObjectName(u"fifthLineCpf")
+        self.fifthLineCpf = LineEdit(self.pageRecibo, "fifthLineCpf", font2)
         sizePolicy8.setHeightForWidth(self.fifthLineCpf.sizePolicy().hasHeightForWidth())
         self.fifthLineCpf.setSizePolicy(sizePolicy8)
-        self.fifthLineCpf.setMaximumSize(QSize(16777215, 30))
-        self.fifthLineCpf.setFont(font2)
-        self.fifthLineCpf.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_3.addWidget(self.fifthLineCpf, 1, 0, 1, 1)
 
-        self.fifthLinePayer = QLineEdit(self.pageRecibo)
-        self.fifthLinePayer.setObjectName(u"fifthLinePayer")
+        self.fifthLinePayer = LineEdit(self.pageRecibo, "fifthLinePayaer", font2)
         sizePolicy9 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy9.setHorizontalStretch(0)
         sizePolicy9.setVerticalStretch(0)
         sizePolicy9.setHeightForWidth(self.fifthLinePayer.sizePolicy().hasHeightForWidth())
         self.fifthLinePayer.setSizePolicy(sizePolicy9)
-        self.fifthLinePayer.setMaximumSize(QSize(16777215, 30))
-        self.fifthLinePayer.setFont(font2)
-        self.fifthLinePayer.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_3.addWidget(self.fifthLinePayer, 3, 0, 1, 5)
 
+        ########################################
         self.fifthBoxReciboType = QComboBox(self.pageRecibo)
         self.fifthBoxReciboType.addItem("")
         self.fifthBoxReciboType.addItem("")
@@ -4479,21 +3981,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.fifthBoxReciboType, 4, 0, 1, 2)
 
-        self.fifthLineValue = QLineEdit(self.pageRecibo)
-        self.fifthLineValue.setObjectName(u"fifthLineValue")
+        self.fifthLineValue = LineEdit(self.pageRecibo, "fifthLineValue", font2)
         sizePolicy8.setHeightForWidth(self.fifthLineValue.sizePolicy().hasHeightForWidth())
         self.fifthLineValue.setSizePolicy(sizePolicy8)
-        self.fifthLineValue.setMaximumSize(QSize(16777215, 30))
-        self.fifthLineValue.setFont(font2)
-        self.fifthLineValue.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_3.addWidget(self.fifthLineValue, 2, 0, 1, 1)
 
@@ -4526,35 +4016,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.fifthBtnTotalRecibo, 0, 4, 1, 1)
 
-        self.fifthLineObs = QLineEdit(self.pageRecibo)
-        self.fifthLineObs.setObjectName(u"fifthLineObs")
-        self.fifthLineObs.setMaximumSize(QSize(16777215, 30))
-        self.fifthLineObs.setFont(font2)
-        self.fifthLineObs.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.fifthLineObs = LineEdit(self.pageRecibo, "fifthLineObs", font2)
 
         self.gridLayout_3.addWidget(self.fifthLineObs, 2, 1, 1, 4)
 
-        self.fifthLinePatient = QLineEdit(self.pageRecibo)
-        self.fifthLinePatient.setObjectName(u"fifthLinePatient")
-        self.fifthLinePatient.setMaximumSize(QSize(16777215, 30))
-        self.fifthLinePatient.setFont(font2)
-        self.fifthLinePatient.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.fifthLinePatient = LineEdit(self.pageRecibo, "fifthLinePatient", font2)
 
         self.gridLayout_3.addWidget(self.fifthLinePatient, 1, 1, 1, 4)
 
@@ -4680,37 +4146,14 @@ class Ui_MainWindow(object):
         self.gridLayout_4.setSpacing(5)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.gridLayout_4.setContentsMargins(10, 10, 10, 10)
-        self.sixthLinePatient = QLineEdit(self.pagePatient)
-        self.sixthLinePatient.setObjectName(u"sixthLinePatient")
-        self.sixthLinePatient.setMaximumSize(QSize(16777215, 30))
-        self.sixthLinePatient.setFont(font2)
-        self.sixthLinePatient.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+
+        self.sixthLinePatient = LineEdit(self.pagePatient, "sixthLinePatient", font2)
 
         self.gridLayout_4.addWidget(self.sixthLinePatient, 0, 1, 1, 1)
 
-        self.sixthLineBornDate = QLineEdit(self.pagePatient)
-        self.sixthLineBornDate.setObjectName(u"sixthLineBornDate")
+        self.sixthLineBornDate = LineEdit(self.pagePatient, "sixthLineBornDate", font2)
         sizePolicy8.setHeightForWidth(self.sixthLineBornDate.sizePolicy().hasHeightForWidth())
         self.sixthLineBornDate.setSizePolicy(sizePolicy8)
-        self.sixthLineBornDate.setMaximumSize(QSize(16777215, 30))
-        self.sixthLineBornDate.setFont(font2)
-        self.sixthLineBornDate.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_4.addWidget(self.sixthLineBornDate, 1, 0, 1, 1)
 
@@ -4742,19 +4185,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.sixthBtnSearch, 1, 1, 1, 1, Qt.AlignRight)
 
-        self.sixthLineMotherName = QLineEdit(self.pagePatient)
-        self.sixthLineMotherName.setObjectName(u"sixthLineMotherName")
-        self.sixthLineMotherName.setMaximumSize(QSize(16777215, 30))
-        self.sixthLineMotherName.setFont(font2)
-        self.sixthLineMotherName.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.sixthLineMotherName = LineEdit(self.pagePatient, "sixthLineMotherName", font2)
 
         self.gridLayout_4.addWidget(self.sixthLineMotherName, 0, 2, 1, 1)
 
@@ -4786,21 +4217,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.sixthBtnExport, 1, 2, 1, 1)
 
-        self.sixthLineCpf = QLineEdit(self.pagePatient)
-        self.sixthLineCpf.setObjectName(u"sixthLineCpf")
+        self.sixthLineCpf = LineEdit(self.pagePatient, "sixthLineCpf", font2)
         sizePolicy8.setHeightForWidth(self.sixthLineCpf.sizePolicy().hasHeightForWidth())
         self.sixthLineCpf.setSizePolicy(sizePolicy8)
-        self.sixthLineCpf.setMaximumSize(QSize(16777215, 30))
-        self.sixthLineCpf.setFont(font2)
-        self.sixthLineCpf.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_4.addWidget(self.sixthLineCpf, 0, 0, 1, 1)
 
@@ -4895,22 +4314,12 @@ class Ui_MainWindow(object):
         self.frameAlta.setFrameShadow(QFrame.Raised)
         self.gridLayout_7 = QGridLayout(self.frameAlta)
         self.gridLayout_7.setObjectName(u"gridLayout_7")
-        self.seventhLinePatient = QLineEdit(self.frameAlta)
-        self.seventhLinePatient.setObjectName(u"seventhLinePatient")
-        self.seventhLinePatient.setMaximumSize(QSize(16777215, 30))
-        self.seventhLinePatient.setFont(font2)
-        self.seventhLinePatient.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+
+        self.seventhLinePatient = LineEdit(self.frameAlta, "seventhLinePatient", font2)
 
         self.gridLayout_7.addWidget(self.seventhLinePatient, 0, 0, 1, 2)
 
+        #############################################
         self.seventhBoxDischargeType = QComboBox(self.frameAlta)
         self.seventhBoxDischargeType.addItem("")
         self.seventhBoxDischargeType.addItem("")
@@ -4957,55 +4366,19 @@ class Ui_MainWindow(object):
 
         self.gridLayout_7.addWidget(self.seventhBoxDischargeType, 2, 0, 1, 2)
 
-        self.seventhLineDischargeDate = QLineEdit(self.frameAlta)
-        self.seventhLineDischargeDate.setObjectName(u"seventhLineDischargeDate")
+        self.seventhLineDischargeDate = LineEdit(self.frameAlta, "seventhLinedischargeDate", font2)
         sizePolicy8.setHeightForWidth(self.seventhLineDischargeDate.sizePolicy().hasHeightForWidth())
         self.seventhLineDischargeDate.setSizePolicy(sizePolicy8)
-        self.seventhLineDischargeDate.setMaximumSize(QSize(16777215, 30))
-        self.seventhLineDischargeDate.setFont(font2)
-        self.seventhLineDischargeDate.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_7.addWidget(self.seventhLineDischargeDate, 1, 0, 1, 1)
 
-        self.seventhLineCpf = QLineEdit(self.frameAlta)
-        self.seventhLineCpf.setObjectName(u"seventhLineCpf")
-        self.seventhLineCpf.setMaximumSize(QSize(16777215, 30))
-        self.seventhLineCpf.setFont(font2)
-        self.seventhLineCpf.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
+        self.seventhLineCpf = LineEdit(self.frameAlta, "seventhLineCpf", font2)
 
         self.gridLayout_7.addWidget(self.seventhLineCpf, 0, 2, 1, 1)
 
-        self.seventhLineDischargeHour = QLineEdit(self.frameAlta)
-        self.seventhLineDischargeHour.setObjectName(u"seventhLineDischargeHour")
+        self.seventhLineDischargeHour = LineEdit(self.frameAlta, "seventhLineDischargeHour", font2)
         sizePolicy8.setHeightForWidth(self.seventhLineDischargeHour.sizePolicy().hasHeightForWidth())
         self.seventhLineDischargeHour.setSizePolicy(sizePolicy8)
-        self.seventhLineDischargeHour.setMaximumSize(QSize(16777215, 30))
-        self.seventhLineDischargeHour.setFont(font2)
-        self.seventhLineDischargeHour.setStyleSheet(u"QLineEdit {\n"
-"	border: 1px solid rgb(144, 144, 144);\n"
-"	border-radius: 5px;\n"
-"	background-color: rgb(85, 85, 85);\n"
-"	padding: 3px;\n"
-"	color: #ffffff;\n"
-"	padding-left: 8px;\n"
-"}\n"
-"")
 
         self.gridLayout_7.addWidget(self.seventhLineDischargeHour, 1, 1, 1, 1)
 
@@ -5576,6 +4949,8 @@ class Ui_MainWindow(object):
         self.firstLineTreatDate.setPlaceholderText(QCoreApplication.translate("MainWindow", u"DATA DE ATENDIMENTO", None))
         self.firstLinePatientName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"NOME DO PACIENTE", None))
         self.firstLineCpf.setPlaceholderText(QCoreApplication.translate("MainWindow", u"CPF", None))
+        self.firstBoxDoctor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Médico Responsável", None))
+        self.firstBoxAdmission.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Recepcionista Responsável", None))
         self.firstBoxClinic.setItemText(0, "")
         self.firstBoxClinic.setItemText(1, QCoreApplication.translate("MainWindow", u"AMBULAT\u00d3RIO", None))
         self.firstBoxClinic.setItemText(2, QCoreApplication.translate("MainWindow", u"GERAL", None))

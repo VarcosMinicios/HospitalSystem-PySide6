@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
-from PySide6.QtGui import QPalette, QColor
 import sys
 
 from ui_functions import *
@@ -15,6 +14,8 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.previousBtn = self.ui.menuBtnMap
+
         # Init functions
         self.set_connections()
 
@@ -23,23 +24,43 @@ class MainWindow(QMainWindow):
         # Show window
         self.show()
 
+    def unselectButton(self, btn):
+        print(self.previousBtn.objectName(), "prev")
+        print(btn.objectName(), "actual")
+        self.previousBtn.unselect()
+        self.previousBtn = btn
+
     def set_connections(self):
+
+        # Connect the Buttons to discharge
         for button in self.ui.pageMap.findChildren(QPushButton):
             if button.objectName()[0] == "a":
                 suffix = button.objectName().replace('a', '')
                 button.clicked.connect(self.init_discharge)
 
-        palette = self.ui.firstLinePatientName.palette()
-        palette.setColor(QPalette.PlaceholderText, QColor(255, 255, 255, 110))
+        # Connect the style function to all LineEdits
+        for lineEdit in self.ui.stackedWidget.findChildren(QLineEdit):
+            lineEdit.textChanged.connect(lineEdit.updateStyleSheet)
 
-        self.ui.firstLinePatientName.setPalette(palette)
+        # Connect the Menu Btns to respective functions
+        for menuBtn in self.ui.frame.findChildren(QPushButton):
+            menuBtn.stacked = self.ui.stackedWidget
+            menuBtn.clicked.connect(menuBtn.navigate)
 
-        for line in self.ui.stackedWidget.findChildren(QLineEdit):
-            line.setPalette(palette)
+        self.ui.menuBtnMap.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnMap))
 
-        palette2 = self.ui.menuBtnAtendimento.palette()
+        self.ui.menuBtnAtendimento.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnAtendimento))
+
+        self.ui.menuBtnExport.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnExport))
+
+        self.ui.menuBtnHistoric.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnHistoric))
+
+        self.ui.menuBtnPatient.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnPatient))
+
+        self.ui.menuBtnRecibo.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnRecibo))
+
+        self.ui.menuBtnRegister.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnRegister))
         
-
     def init_discharge(self):
         pass
 
