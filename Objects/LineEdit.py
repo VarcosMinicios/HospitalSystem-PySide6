@@ -33,10 +33,6 @@ class LineEdit(QLineEdit):
         }
         """)
 
-    def setMask(self):
-        
-        print(self.text())
-
     def updateStyleSheet(self):
 
         if self.text() == "":
