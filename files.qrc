@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file>images/logo.png</file>
+        <file>images/edit.svg</file>
+        <file>images/arrow-down.svg</file>
+        <file>images/fi-rr-chart-histogram.svg</file>
+        <file>images/fi-rr-chart-tree.svg</file>
+        <file>images/fi-rr-database.svg</file>
+        <file>images/fi-rr-data-transfer.svg</file>
+        <file>images/fi-rr-doctor.svg</file>
+        <file>images/fi-rr-document.svg</file>
+        <file>images/fi-rr-map.svg</file>
+        <file>images/fi-rr-medicine.svg</file>
+        <file>images/fi-rr-user-add.svg</file>
+        <file>images/fi-rr-file-add.svg</file>
+        <file>images/fi-rr-user.svg</file>
+        <file>images/fi-rr-cross-circle.svg</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>images/fundoBox.png</file>
+    </qresource>
+</RCC>
