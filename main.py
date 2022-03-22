@@ -1,9 +1,9 @@
-from signal import signal
 from PySide6.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit
 import sys
 
 from ui_functions import *
 from mainwindow import Ui_MainWindow
+from Objects.DataBase import DataBase, PatientRegister, HospitalizationInfo
 
 
 class MainWindow(QMainWindow):
@@ -15,10 +15,12 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Create Variables
         self.previousBtn = self.ui.menuBtnMap
+        self.db = DataBase()
 
         # Init functions
-        self.set_connections()
+        self.set_widget_connections()
 
         self.ui.stackedWidget.setCurrentIndex(1)
 
@@ -26,11 +28,11 @@ class MainWindow(QMainWindow):
         self.show()
 
     # The btn Passed is the "new" self.previousBtn
-    def unselectButton(self, btn):
+    def unselect_button(self, btn):
         self.previousBtn.unselect()
         self.previousBtn = btn
 
-    def set_connections(self):
+    def set_widget_connections(self):
 
         # Connect the Buttons to discharge
         for button in self.ui.pageMap.findChildren(QPushButton):
@@ -47,19 +49,19 @@ class MainWindow(QMainWindow):
             menuBtn.stacked = self.ui.stackedWidget
             menuBtn.clicked.connect(menuBtn.navigate)
 
-        self.ui.menuBtnMap.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnMap))
+        self.ui.menuBtnMap.clicked.connect(lambda: self.unselect_button(self.ui.menuBtnMap))
 
-        self.ui.menuBtnAtendimento.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnAtendimento))
+        self.ui.menuBtnAtendimento.clicked.connect(lambda: self.unselect_button(self.ui.menuBtnAtendimento))
 
-        self.ui.menuBtnExport.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnExport))
+        self.ui.menuBtnExport.clicked.connect(lambda: self.unselect_button(self.ui.menuBtnExport))
         
-        self.ui.menuBtnHistoric.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnHistoric))
+        self.ui.menuBtnHistoric.clicked.connect(lambda: self.unselect_button(self.ui.menuBtnHistoric))
 
-        self.ui.menuBtnPatient.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnPatient))
+        self.ui.menuBtnPatient.clicked.connect(lambda: self.unselect_button(self.ui.menuBtnPatient))
 
-        self.ui.menuBtnRecibo.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnRecibo))
+        self.ui.menuBtnRecibo.clicked.connect(lambda: self.unselect_button(self.ui.menuBtnRecibo))
 
-        self.ui.menuBtnRegister.clicked.connect(lambda: self.unselectButton(self.ui.menuBtnRegister))
+        self.ui.menuBtnRegister.clicked.connect(lambda: self.unselect_button(self.ui.menuBtnRegister))
         # # # # #
 
 
