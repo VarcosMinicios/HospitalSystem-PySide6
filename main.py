@@ -3,7 +3,7 @@ import sys
 
 from ui_functions import *
 from mainwindow import Ui_MainWindow
-from Objects.DataBase import DataBase, PatientRegister, HospitalizationInfo
+from Objects.DataBase import DataBase
 
 
 class MainWindow(QMainWindow):
@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
         # Create Variables
         self.previousBtn = self.ui.menuBtnMap
         self.db = DataBase()
+        self.functions = UiFunctions(self)
 
         # Init functions
         self.set_widget_connections()
@@ -139,6 +140,10 @@ class MainWindow(QMainWindow):
         self.ui.firstLineSusCard.textEdited.connect(lambda: UiFunctions.maskSusCard(self.ui.firstLineSusCard))
 
         self.ui.firstLineCep.textEdited.connect(lambda: UiFunctions.maskCep(self.ui.firstLineCep))
+
+        # Connect Other functions
+
+        self.ui.firstBtnConfirm.clicked.connect(self.functions.hospitalization)
 
     def init_discharge(self):
         pass

@@ -1,10 +1,13 @@
 from main import MainWindow
+from Objects.DataBase import PatientRegister, HospitalizationInfo
 from mainwindow import Ui_MainWindow
+
+from PySide6.QtWidgets import QLineEdit
 
 
 class UiFunctions(Ui_MainWindow):
-    def __init__(self):
-        pass
+    def __init__(self, parent):
+        self.parent = parent
 
     @staticmethod
     def upperFunc(line):
@@ -78,4 +81,8 @@ class UiFunctions(Ui_MainWindow):
         if len(line.text()) == 3:
             line.setInputMask("")
 
-    
+    def hospitalization(self):
+        pass
+        # self.parent.db.insertHospitalizations('hospitalizations', HospitalizationInfo(patient_id, card_code, cpf, patient, hospitalize_date, 
+        #                                                                               admission, doctor, crm, clinic, bed, dependency,
+        #                                                                               hospitalize_hour, responsible))

@@ -26,15 +26,16 @@ class DataBase:
 
     def insertHospitalizations(self, table, info):
 
-        query = f"insert into {table} (id, card_code, cpf, patient, hospitalize_date, admission, doctor, crm, clinic, bed, dependency, " \
-                f"hospitalize_hour, responsible) values ({info.id}, {info.card_code}, '{info.cpf}', '{info.patient}', {info.hospitalize_date}, " \
-                f"'{info.admission}', '{info.doctor}', '{info.crm}', '{info.clinic}', '{info.bed}', '{info.dependency}', "\
-                f"'{info.hospitalize_hour}', '{info.responsible}')"
+        query = f"insert into {table} (patient_id, card_code, cpf, patient, hospitalize_date, admission, doctor, crm, clinic, bed, dependency, " \
+                f"hospitalize_hour, responsible) values ('{info.patient_id}', {info.card_code}, '{info.cpf}', '{info.patient}', " \
+                f"{info.hospitalize_date}, '{info.admission}', '{info.doctor}', '{info.crm}', '{info.clinic}', '{info.bed}', " \
+                f"'{info.dependency}', {info.hospitalize_hour}, '{info.responsible}')"
 
         if QSqlQuery.exec(query):
             return True
         else:
             return False
+
 
 class PatientRegister:
     def __init__(self, cpf, patient_name, born_date, profession, sus_card, rg, mother_name, father_name, phone_one, phone_two,
@@ -62,10 +63,10 @@ class PatientRegister:
 
 
 class HospitalizationInfo:
-    def __init__(self,id, card_code, cpf, patient, hospitalize_date, admission, doctor, crm, clinic, bed, dependency,
-                 hospitalize_hour, responsible):
+    def __init__(self, patient_id, card_code, cpf, patient, hospitalize_date, admission, doctor, crm, clinic, bed, dependency, hospitalize_hour,
+                 responsible):
 
-        self.id = id
+        self.patient_id = patient_id
         self.card_code = card_code
         self.cpf = cpf
         self.patient = patient
