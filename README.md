@@ -12,7 +12,7 @@ establishment. After this is the register of patient, with all his personal info
 search of Database, to make a record of the hospital, or patient or hospitalizations. The last menu button is the "Recibo"
 where you can make the receipt of payment to the hospitalizations debits of the patient.
 
-## is used in this Project
+## Is Used in This Project
 
 The database used is SQLite, provided by the package QSqlDataBase of PySide6, the LineEdits has a personalized class, to handle their design
 and the utility functions comom to all LineEdits of the application.
