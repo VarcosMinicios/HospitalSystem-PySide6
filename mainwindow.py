@@ -2671,6 +2671,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(85, 85, 85);\n"
 "	color: #ffffff;\n"
 "}")
+        self.firstBoxDoctor.addItem("Dr Pascoal Henrique Sarcinelli - CRM 9128391")
 
         self.gridLayout_18.addWidget(self.firstBoxDoctor, 4, 7, 1, 2)
 
@@ -2827,6 +2828,7 @@ class Ui_MainWindow(object):
 "	background-color: rgb(85, 85, 85);\n"
 "	color: #ffffff;\n"
 "}")
+        self.firstBoxAdmission.addItem("Lucas Magalhães")
 
         self.gridLayout_18.addWidget(self.firstBoxAdmission, 4, 6, 1, 1)
 

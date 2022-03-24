@@ -6,8 +6,9 @@ class DataBase:
         self.db = QSqlDatabase.addDatabase("QSQLITE")
         self.db.setDatabaseName('data/main.db')
         self.db.open()
-    
-    def insertOrReplacePatient(self, table, patient):
+
+    @staticmethod
+    def insertOrReplacePatient(table, patient):
 
         query = f"insert or replace into {table} (id, cpf, patient_name, born_date, profession, sus_card, rg, mother_name, " \
                 "father_name, phone_one, phone_two, city, adress, uf, district, cep, zone, gender, skin_color, civil_status) " \
@@ -16,25 +17,35 @@ class DataBase:
                 f"'{patient.phone_one}', '{patient.phone_two}', '{patient.city}', '{patient.adress}', '{patient.uf}', '{patient.district}', " \
                 f"'{patient.cep}', '{patient.zone}', '{patient.gender}', '{patient.skin_color}', '{patient.civil_status}')"
 
-        if QSqlQuery.exec(query):
+        if QSqlQuery(query).exec():
             return True
         else:
             return False
-
-    def selectAll(self, table):
+    
+    @staticmethod
+    def selectAll(table):
         return QSqlQuery.exec(f"select * from {table}").first()
 
-    def insertHospitalizations(self, table, info):
+    @staticmethod
+    def insertHospitalizations(table, info):
 
-        query = f"insert into {table} (patient_id, card_code, cpf, patient, hospitalize_date, admission, doctor, crm, clinic, bed, dependency, " \
-                f"hospitalize_hour, responsible) values ('{info.patient_id}', {info.card_code}, '{info.cpf}', '{info.patient}', " \
-                f"{info.hospitalize_date}, '{info.admission}', '{info.doctor}', '{info.crm}', '{info.clinic}', '{info.bed}', " \
-                f"'{info.dependency}', {info.hospitalize_hour}, '{info.responsible}')"
+        query = f"insert into {table} (patient_id, cpf, patient, hospitalize_date, admission, doctor, crm, clinic, bed, dependency, " \
+                f"hospitalize_hour, responsible) values ({info.patient_id}, '{info.cpf}', '{info.patient}', " \
+                f"'{info.hospitalize_date}', '{info.admission}', '{info.doctor}', '{info.crm}', '{info.clinic}', '{info.bed}', " \
+                f"'{info.dependency}', '{info.hospitalize_hour}', '{info.responsible}')"
 
-        if QSqlQuery.exec(query):
+        if QSqlQuery(query):
             return True
         else:
             return False
+
+    @staticmethod
+    def getCardCode():
+        return QSqlQuery("select top 1 card_code from hospitalizations order by card_code desc").exec()
+
+    @staticmethod
+    def getIdByCpf(cpf):
+        return QSqlQuery(f"select id from patient_register where cpf={cpf}").exec()
 
 
 class PatientRegister:
@@ -63,11 +74,10 @@ class PatientRegister:
 
 
 class HospitalizationInfo:
-    def __init__(self, patient_id, card_code, cpf, patient, hospitalize_date, admission, doctor, crm, clinic, bed, dependency, hospitalize_hour,
+    def __init__(self, patient_id, cpf, patient, hospitalize_date, admission, doctor, crm, clinic, bed, dependency, hospitalize_hour,
                  responsible):
 
         self.patient_id = patient_id
-        self.card_code = card_code
         self.cpf = cpf
         self.patient = patient
         self.hospitalize_date = hospitalize_date

@@ -18,7 +18,6 @@ class MainWindow(QMainWindow):
         # Create Variables
         self.previousBtn = self.ui.menuBtnMap
         self.db = DataBase()
-        self.functions = UiFunctions(self)
 
         # Init functions
         self.set_widget_connections()
@@ -41,9 +40,10 @@ class MainWindow(QMainWindow):
                 suffix = button.objectName().replace('a', '')
                 button.clicked.connect(self.init_discharge)
 
-        # Connect the style function to all LineEdits
+        # Connect the Lines to the UpperFunction and the styleSheet function to all LineEdits
         for lineEdit in self.ui.stackedWidget.findChildren(QLineEdit):
             lineEdit.textChanged.connect(lineEdit.updateStyleSheet)
+            lineEdit.textChanged.connect(lineEdit.toUpper)
 
         # Connect the Menu Btns to respective functions
         for menuBtn in self.ui.frame.findChildren(QPushButton):
@@ -65,85 +65,39 @@ class MainWindow(QMainWindow):
         self.ui.menuBtnRegister.clicked.connect(lambda: self.unselect_button(self.ui.menuBtnRegister))
         # # # # #
 
+        self.ui.fifthLineCpf.textEdited.connect(self.ui.fifthLineCpf.maskCpf)
 
-        # Connect the Lines to the UpperFunction
-        self.ui.firstLinePatientName.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLinePatientName))
+        self.ui.firstLineCpf.textEdited.connect(self.ui.firstLineCpf.maskCpf)
 
-        self.ui.firstLineAdress.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineAdress))
+        self.ui.sixthLineCpf.textEdited.connect(self.ui.sixthLineCpf.maskCpf)
 
-        self.ui.firstLineCity.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineCity))
+        self.ui.thirdLineCpf.textEdited.connect(self.ui.thirdLineCpf.maskCpf)
 
-        self.ui.firstLineDistrict.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineDistrict))
+        self.ui.secondLineCpf.textEdited.connect(self.ui.secondLineCpf.maskCpf)
 
-        self.ui.firstLineFatherName.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineFatherName))
+        self.ui.seventhLineCpf.textEdited.connect(self.ui.seventhLineCpf.maskCpf)
 
-        self.ui.firstLineMotherName.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineMotherName))
+        self.ui.sixthLineBornDate.textEdited.connect(self.ui.sixthLineBornDate.maskDate)
 
-        self.ui.firstLineProfession.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineProfession))
+        self.ui.thirdLineInitDate.textEdited.connect(self.ui.thirdLineInitDate.maskDate)
 
-        self.ui.firstLineRG.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineRG))
+        self.ui.thirdLineFinalDate.textEdited.connect(self.ui.thirdLineFinalDate.maskDate)
 
-        self.ui.firstLineResponsible.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineResponsible))
-
-        self.ui.secondLineMotherName.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.secondLineMotherName))
-
-        self.ui.secondLinePatientName.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.secondLinePatientName))
-
-        self.ui.firstLineUf.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.firstLineUf))
-
-        self.ui.fourthLineName.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.fourthLineName))
-
-        self.ui.fourthLineAdress.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.fourthLineAdress))
-
-        self.ui.thirdLineMotherName.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.thirdLineMotherName))
-
-        self.ui.thirdLinePatient.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.thirdLinePatient))
-
-        self.ui.fifthLinePayer.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.fifthLinePayer))
-
-        self.ui.sixthLineMotherName.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.sixthLineMotherName))
-
-        self.ui.fifthLinePatient.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.fifthLinePatient))
-
-        self.ui.sixthLinePatient.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.sixthLinePatient))
-
-        self.ui.fourthLineCrm.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.fourthLineCrm))
-        # # # # #
-
-
-        self.ui.fifthLineObs.textEdited.connect(lambda: UiFunctions.upperFunc(self.ui.fifthLineObs))
-
-        self.ui.fifthLineCpf.textEdited.connect(lambda: UiFunctions.maskCpf(self.ui.fifthLineCpf))
-
-        self.ui.firstLineCpf.textEdited.connect(lambda: UiFunctions.maskCpf(self.ui.firstLineCpf))
-
-        self.ui.sixthLineCpf.textEdited.connect(lambda: UiFunctions.maskCpf(self.ui.sixthLineCpf))
-
-        self.ui.thirdLineCpf.textEdited.connect(lambda: UiFunctions.maskCpf(self.ui.thirdLineCpf))
-
-        self.ui.secondLineCpf.textEdited.connect(lambda: UiFunctions.maskCpf(self.ui.secondLineCpf))
-
-        self.ui.seventhLineCpf.textEdited.connect(lambda: UiFunctions.maskCpf(self.ui.seventhLineCpf))
-
-        self.ui.sixthLineBornDate.textEdited.connect(lambda: UiFunctions.maskDate(self.ui.sixthLineBornDate))
-
-        self.ui.thirdLineInitDate.textEdited.connect(lambda: UiFunctions.maskDate(self.ui.thirdLineInitDate))
-
-        self.ui.thirdLineFinalDate.textEdited.connect(lambda: UiFunctions.maskDate(self.ui.thirdLineFinalDate))
-
-        self.ui.firstLinePhoneOne.textEdited.connect(lambda: UiFunctions.maskPhone(self.ui.firstLinePhoneOne))
+        self.ui.firstLinePhoneOne.textEdited.connect(self.ui.firstLinePhoneOne.maskPhone)
         
-        self.ui.firstLinePhoneTwo.textEdited.connect(lambda: UiFunctions.maskPhone(self.ui.firstLinePhoneTwo))
+        self.ui.firstLinePhoneTwo.textEdited.connect(self.ui.firstLinePhoneTwo.maskPhone)
 
-        self.ui.fourthLineCrm.textEdited.connect(lambda: UiFunctions.maskCRM(self.ui.fourthLineCrm))
+        self.ui.fourthLineCrm.textEdited.connect(self.ui.fourthLineCrm.maskCRM)
 
-        self.ui.firstLineSusCard.textEdited.connect(lambda: UiFunctions.maskSusCard(self.ui.firstLineSusCard))
+        self.ui.firstLineSusCard.textEdited.connect(self.ui.firstLineSusCard.maskSusCard)
 
-        self.ui.firstLineCep.textEdited.connect(lambda: UiFunctions.maskCep(self.ui.firstLineCep))
+        self.ui.firstLineCep.textEdited.connect(self.ui.firstLineCep.maskCep)
 
         # Connect Other functions
 
-        self.ui.firstBtnConfirm.clicked.connect(self.functions.hospitalization)
+        self.ui.firstBtnConfirm.clicked.connect(lambda: UiFunctions.registerAndHospitalize(self))
+
+        self.ui.firstBtnRegister.clicked.connect(lambda: UiFunctions.register(self))
 
     def init_discharge(self):
         pass

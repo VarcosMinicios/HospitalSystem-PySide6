@@ -1,88 +1,57 @@
-from main import MainWindow
-from Objects.DataBase import PatientRegister, HospitalizationInfo
-from mainwindow import Ui_MainWindow
-
-from PySide6.QtWidgets import QLineEdit
+from Objects.DataBase import DataBase, PatientRegister, HospitalizationInfo
 
 
-class UiFunctions(Ui_MainWindow):
-    def __init__(self, parent):
-        self.parent = parent
-
-    @staticmethod
-    def upperFunc(line):
-        position = line.cursorPosition()
-        line.setText(line.text().upper())
-        line.setCursorPosition(position)
-
-    @staticmethod
-    def maskCpf(line):
-        if len(line.text()) == 1:
-            prev_text = line.text()
-            line.setInputMask("000.000.000-00")
-            line.setText(prev_text)
-            line.setCursorPosition(1)
-        
-        if len(line.text()) == 3:
-            line.setInputMask("")
-
-    @staticmethod
-    def maskPhone(line):
-        if len(line.text()) == 1:
-            prev_text = line.text()
-            line.setInputMask("(00) 00000-0000")
-            line.setText(prev_text)
-            line.setCursorPosition(2)
-        
-        if len(line.text()) == 4:
-            line.setInputMask("")
-
-    @staticmethod
-    def maskDate(line):
-        if len(line.text()) == 1:
-            prev_text = line.text()
-            line.setInputMask("00/00/0000")
-            line.setText(prev_text)
-            line.setCursorPosition(1)
-        
-        if len(line.text()) == 2:
-            line.setInputMask("")
-
-    @staticmethod
-    def maskCRM(line):
-        if len(line.text()) == 1:
-            prev_text = line.text()
-            line.setInputMask("CRM nnnnnnnnnnnnnnnnnnn")
-            line.setText(prev_text)
-            line.setCursorPosition(5)
-        
-        if len(line.text()) == 4:
-            line.setInputMask("")
-
-    @staticmethod
-    def maskCep(line):
-        if len(line.text()) == 1:
-            prev_text = line.text()
-            line.setInputMask("00.000-000")
-            line.setText(prev_text)
-            line.setCursorPosition(1)
-        
-        if len(line.text()) == 2:
-            line.setInputMask("")
-
-    @staticmethod
-    def maskSusCard(line):
-        if len(line.text()) == 1:
-            prev_text = line.text()
-            line.setInputMask("0000.0000.0000.0000")
-            line.setText(prev_text)
-            line.setCursorPosition(1)
-        
-        if len(line.text()) == 3:
-            line.setInputMask("")
-
-    def hospitalization(self):
+class UiFunctions:
+    def __init__(self):
         pass
-        # self.parent.db.insertHospitalizations('hospitalizations', HospitalizationInfo(patient_id, card_code, cpf, patient, hospitalize_date, 
-        #                                                                               admission, doctor, crm, clinic, bed, dependency,
-        #                                                                               hospitalize_hour, responsible))
+
+    @staticmethod
+    def hospitalization(parent):
+
+        DataBase.insertHospitalizations(
+            'hospitalizations', HospitalizationInfo(
+                DataBase.getIdByCpf(parent.ui.firstLineCpf.text()), parent.ui.firstLineCpf.text(), parent.ui.firstLinePatientName.text(), 
+                parent.ui.firstLineTreatDate.text(), parent.ui.firstBoxAdmission.currentText(), 
+                parent.ui.firstBoxDoctor.currentText().split(' - ')[0], parent.ui.firstBoxDoctor.currentText().split(' - ')[1], 
+                parent.ui.firstBoxClinic.currentText(), parent.ui.firstBoxBed.currentText(), parent.ui.firstBoxDependency.currentText(), 
+                parent.ui.firstLineTreatHour.text(), parent.ui.firstLineResponsible.text()
+            )
+        )
+    
+    @staticmethod
+    def register(parent):
+
+        DataBase.insertOrReplacePatient(
+            'patient_register', PatientRegister(
+                parent.ui.firstLineCpf.text(), parent.ui.firstLinePatientName.text(), parent.ui.firstLineBornDay.text(), 
+                parent.ui.firstLineProfession.text(), parent.ui.firstLineSusCard.text(), parent.ui.firstLineRG.text(), 
+                parent.ui.firstLineMotherName.text(), parent.ui.firstLineFatherName.text(), parent.ui.firstLinePhoneOne, 
+                parent.ui.firstLinePhoneTwo.text(), parent.ui.firstLineCity.text(), parent.ui.firstLineAdress.text(), parent.ui.firstLineUf.text(),
+                parent.ui.firstLineDistrict.text(), parent.ui.firstLineCep.text(), parent.ui.firstBoxUrbanZone.currentText(), 
+                parent.ui.firstBoxSex.currentText(), parent.ui.firstBoxSkinColor.currentText(), parent.ui.firstBoxCivilStats.currentText()
+            )
+        )
+
+    @staticmethod
+    def registerAndHospitalize(parent):
+
+        DataBase.insertOrReplacePatient(
+            'patient_register', PatientRegister(
+                parent.ui.firstLineCpf.text(), parent.ui.firstLinePatientName.text(), parent.ui.firstLineBornDay.text(), 
+                parent.ui.firstLineProfession.text(), parent.ui.firstLineSusCard.text(), parent.ui.firstLineRG.text(), 
+                parent.ui.firstLineMotherName.text(), parent.ui.firstLineFatherName.text(), parent.ui.firstLinePhoneOne, 
+                parent.ui.firstLinePhoneTwo.text(), parent.ui.firstLineCity.text(), parent.ui.firstLineAdress.text(), parent.ui.firstLineUf.text(),
+                parent.ui.firstLineDistrict.text(), parent.ui.firstLineCep.text(), parent.ui.firstBoxUrbanZone.currentText(), 
+                parent.ui.firstBoxSex.currentText(), parent.ui.firstBoxSkinColor.currentText(), parent.ui.firstBoxCivilStats.currentText()
+            )
+        )
+
+        DataBase.insertHospitalizations(
+            'hospitalizations', HospitalizationInfo(
+                DataBase.getIdByCpf(parent.ui.firstLineCpf.text()), parent.ui.firstLineCpf.text(), parent.ui.firstLinePatientName.text(), 
+                parent.ui.firstLineTreatDate.text(), parent.ui.firstBoxAdmission.currentText(), 
+                parent.ui.firstBoxDoctor.currentText().split(' - ')[0], parent.ui.firstBoxDoctor.currentText().split(' - ')[1], 
+                parent.ui.firstBoxClinic.currentText(), parent.ui.firstBoxBed.currentText(), parent.ui.firstBoxDependency.currentText(), 
+                parent.ui.firstLineTreatHour.text(), parent.ui.firstLineResponsible.text()
+            )
+        )
